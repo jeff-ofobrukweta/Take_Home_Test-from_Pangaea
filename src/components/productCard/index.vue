@@ -1,0 +1,23 @@
+<template>
+  <div :class="`product-card ${customClass}`">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "ProductCard",
+
+  props: {
+    customClass: {
+      type: String,
+      default: "",
+    }
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+@import url("./index.scss");
+</style>
