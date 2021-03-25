@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 import apolloClient from "./utils/apollo";
-import App from './App.vue';
+import App from './layout/App';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';

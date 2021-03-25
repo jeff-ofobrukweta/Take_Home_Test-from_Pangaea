@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import HeaderNavbar from "./components/headerComponent/index";
+import HeaderNavbar from "../components/headerComponent/index";
 
 export default {
   name: "ApplicationMain",
