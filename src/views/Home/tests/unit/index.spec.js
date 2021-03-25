@@ -1,21 +1,18 @@
 import { mount } from "@vue/test-utils";
 import HomePage from "../../index";
-import SidebarProduct from "../../../../components/sidebarCart/index"
-
-
+import SidebarProduct from "../../../../components/sidebarCart/index";
 
 let wrapper = "";
 
 beforeEach(() => {
   wrapper = mount(HomePage, {
-    propData: {},
-  })
-})
+    propData: {}
+  });
+});
 
 describe("Test HomePage Page", () => {
-
   test("check the HomePage for sidebar component when its toogle", () => {
     const homePageView = wrapper.findComponent(SidebarProduct);
     //  finish the test later
-  })
-})
+  });
+});

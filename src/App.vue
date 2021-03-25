@@ -5,16 +5,17 @@
   </div>
 </template>
 
-
 <script>
 import HeaderNavbar from "./components/headerComponent/index";
+
 export default {
   name: "ApplicationMain",
   components: {
-    HeaderNavbar,
-  },
+    HeaderNavbar
+  }
 };
 </script>
+
 <style lang="scss">
-@import url("./app.scss");
+@import url("./App.scss");
 </style>

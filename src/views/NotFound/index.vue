@@ -8,7 +8,7 @@ export default {
 
   components: {},
 
-  props: {},
+  props: {}
 };
 </script>
 

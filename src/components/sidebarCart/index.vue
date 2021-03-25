@@ -10,14 +10,14 @@ import ProductCard from "../productCard/index";
 export default {
   name: "ProductCard",
   components: {
-    ProductCard,
+    ProductCard
   },
   props: {
     customClass: {
       type: String,
-      default: "",
-    },
-  },
+      default: ""
+    }
+  }
 };
 </script>
 

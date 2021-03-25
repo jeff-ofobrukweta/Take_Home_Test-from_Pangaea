@@ -11,10 +11,9 @@ export default {
 
   components: {},
 
-  props: {},
+  props: {}
 };
 </script>
-
 
 <style scoped lang="scss">
 @import url("./index.scss");

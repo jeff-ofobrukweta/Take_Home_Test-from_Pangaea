@@ -10,21 +10,21 @@ export default {
   props: {
     customClass: {
       type: String,
-      default: "",
+      default: ""
     },
     customName: {
       type: String,
       default: "",
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
     handleButtonAction() {
       this.$emit('buttonClick', {
-        name: this.customName,
+        name: this.customName
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
