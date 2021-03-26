@@ -1,16 +1,20 @@
 <template>
   <div class="home-component">
-    Home Page Component ...
+    <ButtonComponent />
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import url("./index.scss");
 </style>
 
 <script>
+import ButtonComponent from "../../components/button/index";
+
 export default {
   name: "HomePageComponent",
-  components: {}
+  components: {
+    ButtonComponent
+  }
 };
 </script>

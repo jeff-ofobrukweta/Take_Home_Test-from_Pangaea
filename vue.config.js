@@ -60,8 +60,8 @@ module.exports = {
     loaderOptions: {
       sass: {
         prependData: `
-                @import "@/assets/scss/base/_variables.scss";
-                @import "@/assets/scss/base/_mixins.scss";`
+          @import "@/assets/scss/base/_variables.scss";@import "@/assets/scss/base/_mixins.scss";
+        `
       }
     }
   },
