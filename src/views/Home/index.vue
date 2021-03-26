@@ -1,6 +1,6 @@
 <template>
   <div class="home-component">
-    <ButtonComponent />
+    <ButtonComponent customName="btn" />
   </div>
 </template>
 

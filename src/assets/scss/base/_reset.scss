@@ -23,6 +23,7 @@ body {
 
 html,
 body {
+  font-family: $penguin-fonts, Tahoma, Sans-Serif;
   font-size: 14px;
 
   @include tablet {

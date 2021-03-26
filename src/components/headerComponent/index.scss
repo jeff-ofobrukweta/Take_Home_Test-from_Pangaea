@@ -1,0 +1,32 @@
+.navigation-container{
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  height: 64px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
+  padding-top: 0.5rem;
+  color: rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(41, 41, 41);
+  border-top-color: rgb(41, 41, 41);
+  border-right-color: rgb(41, 41, 41);
+  border-left-color: rgb(41, 41, 41);
+
+}
+
+.cart-container{
+  width: 28px;
+  height: 28px;
+  display: flex;
+  font-size: 23px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cart-icon{
+  width: inherit;
+  height: inherit;
+}
