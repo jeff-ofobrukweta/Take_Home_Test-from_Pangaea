@@ -10,17 +10,16 @@
   user-select: none;
   position: relative;
   vertical-align: middle;
+  cursor: pointer;
   outline: none;
   border: 0px;
   line-height: 1.2;
   padding-top: 2px;
-  font-weight: 600;
+  font-weight: bold;
   padding-left: 1rem;
   padding-right: 1rem;
   min-height: 52px;
-  background-color: $penguin-green-color;
-  color: $penguin-white-color;
-  width: 100%;
-  max-width: 100%;
+  width: inherit;
+  max-width: inherit;
   white-space: normal;
 }

@@ -28,5 +28,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url("./index.scss");
+@import "./index.scss";
 </style>

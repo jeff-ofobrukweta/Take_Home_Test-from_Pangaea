@@ -1,15 +1,8 @@
-$mobile: "screen and (max-width: 599px)";
-$tablet: "screen and (min-width: 600px)";
+$tablet: "screen and (max-width: 768px)";
 $desktop: "screen and (min-width: 1200px)";
 $desktop-lg: "screen and (min-width: 1800px)";
 
 
-
-@mixin mobile {
-  @media #{$mobile} {
-    @content;
-  }
-}
 
 @mixin tablet {
   @media #{$tablet} {

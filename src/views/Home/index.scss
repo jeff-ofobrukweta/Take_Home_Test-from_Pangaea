@@ -1,0 +1,92 @@
+.home-component{
+  flex-wrap: wrap;
+  display: flex;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+
+
+
+.custom-class-card-holder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33.3333%;
+  padding: 3rem 2rem;
+  max-width: 100%;
+}
+.chakra-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inherit-style{
+  width: 100%;
+  height: inherit;
+}
+
+.image-card-component{
+  object-fit: contain;
+}
+
+.wrapper-image{
+  min-height: 160px;
+  max-width: 100%;
+}
+
+.button-custom{
+  width: 100%;
+  .btn-background{
+    background-color: $penguin-green-color;
+    color:$penguin-white-color;
+  }
+}
+
+.css-1mujpit {
+  font-family: "FF Bau Regular", sans-serif;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.css-1o2ui0u {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css-5d7bjs > :not(style) ~ :not(style) {
+  margin-top: 0.5rem;
+  margin-left: 0rem;
+}
+.css-1v9wznn {
+  font-family: "FF Bau Regular", sans-serif;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  margin-left: 0rem;
+  margin-right: 0.25rem;
+}
+
+// media query mobile
+
+@include tablet {
+  .custom-class-card-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 2rem 1rem;
+    max-width: 100%;
+  }
+}
