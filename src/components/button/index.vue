@@ -21,10 +21,15 @@ export default {
       default: "",
       required: true,
     },
+    eventNameToEmit:{
+      type: String,
+      default: "buttonClick",
+      required: true,
+    }
   },
   methods: {
     handleButtonAction() {
-      this.$emit("buttonClick", {
+      this.$emit(`${this.eventNameToEmit}`, {
         name: this.customName,
       });
     },

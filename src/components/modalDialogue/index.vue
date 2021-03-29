@@ -1,8 +1,7 @@
 <template>
   <div>
     <div>
-      <button id="show-modal" @click="showModal = true">Show Modal</button>
-      <ModalTemplateBase v-if="showModal" @close="showModal = false">
+      <ModalTemplateBase v-if="GET_MODAL_STATE">
         <h3 slot="header">custom header</h3>
       </ModalTemplateBase>
     </div>
@@ -10,15 +9,27 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { GET_MODAL_STATE } from "./vuex-module/index.types";
 import ModalTemplateBase from "./modal";
 
 export default {
   name: "ModalComponent",
   data() {
     return {
-      showModal: false
+      modalState: false,
     };
   },
-  components: { ModalTemplateBase }
+  computed: {
+    ...mapGetters([GET_MODAL_STATE]),
+  },
+  props: {
+    showModal: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {},
+  components: { ModalTemplateBase },
 };
 </script>

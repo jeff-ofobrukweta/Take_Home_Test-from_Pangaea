@@ -1,6 +1,7 @@
 <template>
   <div class="home-component">
     <Sidebar />
+
     <div v-if="GET_PRODUCT.length" class="product-wrapper">
       <ProductCard
         v-for="(item, index) in GET_PRODUCT"
@@ -22,7 +23,13 @@
           <p class="chakra-text css-mgwhu5">NGN&nbsp;{{ item.price }}</p>
         </div>
         <div class="button-custom">
-          <ButtonComponent customClass="btn-background">
+          <ButtonComponent
+            id="show-modal"
+            customName="modal-open"
+            eventNameToEmit="open"
+            @open="handleModalOpen"
+            customClass="btn-background"
+          >
             Add to Cart
           </ButtonComponent>
         </div>
@@ -39,7 +46,7 @@
 </style>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import ButtonComponent from "../../components/button/index";
 import ProductCard from "../../components/productCard/index";
 import Sidebar from "../../components/sidebarCart/index";
@@ -51,6 +58,7 @@ import {
 } from "./vuex-module/index.types";
 
 import { GET_RESPONSE_ERROR } from "../../store/index.types";
+import { GET_MODAL_STATE, SET_MODAL_STATE } from "../../components/modalDialogue/vuex-module/index.types";
 
 export default {
   name: "HomePageComponent",
@@ -65,10 +73,21 @@ export default {
     Sidebar,
   },
   computed: {
-    ...mapGetters([GET_RESPONSE_ERROR, GET_PRODUCT, GET_CURRENCY]),
+    ...mapGetters([
+      GET_RESPONSE_ERROR,
+      GET_PRODUCT,
+      GET_CURRENCY,
+      GET_MODAL_STATE
+    ]),
   },
   methods: {
     ...mapActions([GET_PRODUCTS_ACTIONS, GET_CURRENCY_ACTIONS]),
+    ...mapMutations([SET_MODAL_STATE]),
+    handleModalOpen(e) {
+      if (e.name === "modal-open") {
+        this[SET_MODAL_STATE](true);
+      }
+    },
   },
   async mounted() {
     // this.currencyList = await this[GET_CURRENCY_ACTIONS]();

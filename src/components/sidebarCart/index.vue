@@ -14,15 +14,25 @@ import ModalDialogue from "../modalDialogue/index";
 
 export default {
   name: "Sidebar",
+  data() {
+    return {
+    };
+  },
   components: {
     ProductCard,
     ModalDialogue,
+  },
+  methods: {
   },
   props: {
     customClass: {
       type: String,
       default: "",
     },
+    showModal:{
+      type:Boolean,
+      default:false
+    }
   },
 };
 </script>
