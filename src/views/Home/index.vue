@@ -58,7 +58,10 @@ import {
 } from "./vuex-module/index.types";
 
 import { GET_RESPONSE_ERROR } from "../../store/index.types";
-import { GET_MODAL_STATE, SET_MODAL_STATE } from "../../components/modalDialogue/vuex-module/index.types";
+import {
+  GET_MODAL_STATE,
+  SET_MODAL_STATE,
+} from "../../components/modalDialogue/vuex-module/index.types";
 
 export default {
   name: "HomePageComponent",
@@ -77,7 +80,7 @@ export default {
       GET_RESPONSE_ERROR,
       GET_PRODUCT,
       GET_CURRENCY,
-      GET_MODAL_STATE
+      GET_MODAL_STATE,
     ]),
   },
   methods: {
@@ -90,8 +93,9 @@ export default {
     },
   },
   async mounted() {
-    // this.currencyList = await this[GET_CURRENCY_ACTIONS]();
-    await this[GET_PRODUCTS_ACTIONS]("USD");
+    this.currencyList = await this[GET_CURRENCY_ACTIONS]();
+    console.log("hello", this[GET_CURRENCY][0]);
+    await this[GET_PRODUCTS_ACTIONS](this[GET_CURRENCY][0]);
     if (this.currencyList?.length) {
     }
   },
