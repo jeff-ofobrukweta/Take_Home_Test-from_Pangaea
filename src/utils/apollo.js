@@ -5,6 +5,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const { API_BASE_URL } = process.env;
+
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
@@ -20,10 +21,15 @@ const apolloClient = new ApolloClient({
   cache
 });
 
+const getQuery = async (Qparam) => {
+  const { data } = await apolloClient.query({ query: Qparam });
+  return data;
+};
+
 Vue.use(VueApollo);
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient
 });
 
-export { apolloProvider };
+export { apolloProvider, getQuery };

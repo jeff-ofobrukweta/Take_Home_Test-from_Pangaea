@@ -13,6 +13,7 @@ beforeEach(() => {
 describe("Test HomePage Page", () => {
   test("check the HomePage for sidebar component when its toogle", () => {
     const homePageView = wrapper.findComponent(SidebarProduct);
+    expect(homePageView).toBeDefined();
     //  finish the test later...
   });
 });

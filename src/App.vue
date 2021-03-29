@@ -12,32 +12,16 @@
 </style>
 
 <script>
-import gql from "graphql-tag";
+
 import HeaderNavbar from "./components/headerComponent/index";
 
 export default {
   name: "ApplicationMain",
   data() {
-    return {
-      products: [],
-    };
+    return {};
   },
   components: {
-    HeaderNavbar,
-  },
-  mounted() {
-    console.log(">>>All products>>>", this.products);
-  },
-  apollo: {
-    products: gql`
-      query {
-        products {
-          image_url
-          title
-          price(currency: ${"GTQ"})
-        }
-      }
-    `,
-  },
+    HeaderNavbar
+  }
 };
 </script>

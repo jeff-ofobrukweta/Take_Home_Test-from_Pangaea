@@ -1,23 +1,29 @@
 <template>
   <div class="transparent-holder">
-    <ProductCard customClass="side-bar-product-card"> </ProductCard>
+    <ModalDialogue>
+      <ProductCard customClass="side-bar-product-card">
+        hello world
+      </ProductCard>
+    </ModalDialogue>
   </div>
 </template>
 
 <script>
 import ProductCard from "../productCard/index";
+import ModalDialogue from "../modalDialogue/index";
 
 export default {
-  name: "ProductCard",
+  name: "Sidebar",
   components: {
-    ProductCard
+    ProductCard,
+    ModalDialogue,
   },
   props: {
     customClass: {
       type: String,
-      default: ""
-    }
-  }
+      default: "",
+    },
+  },
 };
 </script>
 
