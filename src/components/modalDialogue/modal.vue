@@ -8,9 +8,22 @@
               <slot name="header"> default header </slot>
             </div>
 
-            <div class="modal-body">
-              <slot name="body"> default body </slot>
+            <div v-if="GET_CART.length" class="modal-body">
+              <ProductCard v-for="(items,index) in GET_CART" :key="index">
+                <div class="main">
+                  <div class="item-left"><div class="title">
+                    {{item_title}}
+                    <div class="price">
+                      {{item_title}}
+                    </div>
+                    </div></div>
+                  <div class="item-right"></div>
+
+                </div>
+              </ProductCard >
+              
             </div>
+            <div v-else>SORRY YOU HAVE NOT YET ADDED ANYTHING TO CART!</div>
 
             <div class="modal-footer">
               <slot name="footer">
@@ -32,23 +45,27 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./index.scss";
 </style>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import { GET_CART } from "../../views/Home/vuex-module/index.types";
 import ButtonComponent from "../button/index";
+import ProductCard from "../productCard/index";
 import { GET_MODAL_STATE, SET_MODAL_STATE } from "./vuex-module/index.types";
 
 export default {
   name: "ModalTemplateBase",
   components: {
     ButtonComponent,
+    ProductCard,
   },
   computed: {
-    ...mapGetters([GET_MODAL_STATE]),
+    ...mapGetters([GET_CART, GET_MODAL_STATE]),
   },
+
   methods: {
     ...mapMutations([SET_MODAL_STATE]),
     handleModalClose(e) {

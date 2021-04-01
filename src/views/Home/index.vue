@@ -24,10 +24,14 @@
         </div>
         <div class="button-custom">
           <ButtonComponent
-            id="show-modal"
+            typed="add"
+            :keyid="index"
             customName="modal-open"
             eventNameToEmit="open"
             @open="handleModalOpen"
+            :item_title="item.title"
+            :item_image="item.image_url"
+            :item_price="item.price"
             customClass="btn-background"
           >
             Add to Cart
@@ -55,6 +59,8 @@ import {
   GET_CURRENCY,
   GET_PRODUCTS_ACTIONS,
   GET_CURRENCY_ACTIONS,
+  GET_CART,
+  ADD_TO_CART,
 } from "./vuex-module/index.types";
 
 import { GET_RESPONSE_ERROR } from "../../store/index.types";
@@ -81,23 +87,23 @@ export default {
       GET_PRODUCT,
       GET_CURRENCY,
       GET_MODAL_STATE,
+      GET_CART
     ]),
   },
   methods: {
     ...mapActions([GET_PRODUCTS_ACTIONS, GET_CURRENCY_ACTIONS]),
-    ...mapMutations([SET_MODAL_STATE]),
+    ...mapMutations([SET_MODAL_STATE, ADD_TO_CART]),
     handleModalOpen(e) {
       if (e.name === "modal-open") {
         this[SET_MODAL_STATE](true);
       }
+      this[ADD_TO_CART](e.items);
     },
   },
   async mounted() {
     this.currencyList = await this[GET_CURRENCY_ACTIONS]();
     console.log("hello", this[GET_CURRENCY][0]);
     await this[GET_PRODUCTS_ACTIONS](this[GET_CURRENCY][0]);
-    if (this.currencyList?.length) {
-    }
   },
 };
 </script>

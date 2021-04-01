@@ -17,7 +17,6 @@ import {
   GET_ITEMS,
   SET_ITEMS,
   GET_CART,
-  SET_CART,
   REMOVE_ITEM,
   ADD_TO_CART,
   NUMBER,
@@ -75,8 +74,7 @@ const mutations = {
   },
   // use this if you want to get the number of items in cart
   [NUMBER](state) {
-
-    const totalCartLength = state.cartItems.reducer((acc, { quantity }) => {
+    const totalCartLength = state.cartItems.reduce((acc, { quantity }) => {
       return acc + quantity;
     });
     state.noOfItems = totalCartLength;
@@ -84,35 +82,34 @@ const mutations = {
   // use this mutation when you want to add to cart {id,title,image,price,1}
 
   [ADD_TO_CART](state, payload) {
-    const stateX = state.cartItems.filter((s) => {
-      if (s.id === payload.id) {
-        const quantity = s.quantity + 1;
-        return {
-          ...s,
-          quantity
 
-        };
+    // check if the array contains the payload
+    // if it ontains the payload -- increment the quantity value
+    if (state.cartItems.length === 0) {
+      state.cartItems.push(payload);
+      return;
+
+    }
+
+    let pushTest = false;
+    state.cartItems.forEach((a, i) => {
+      if (a.id === payload.id) {
+        const num = { ...a, quantity: a.quantity + 1 };
+        state.cartItems[i] = num;
+        pushTest = true;
       }
-      return s;
     });
-    state.cartItems = state.cartItems.push(stateX)
+    if (!pushTest) state.cartItems.push(payload);
+
+
+
+
+
+
   },
   // you call this set cart mutation when you want to increase cart num with id as payload
 
-  [SET_CART](state, payload) {
-    const newS = state.cartItems.filter((s) => {
-      if (s.id === payload) {
-        const quantity = s.quantity + 1;
-        return {
-          ...s,
-          quantity
 
-        };
-      }
-      return s;
-    });
-    state.cartItems = newS;
-  },
   // use this when you want to remove an item completely
 
   [REMOVE_ITEM](state, payload) {
