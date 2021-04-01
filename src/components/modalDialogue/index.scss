@@ -20,13 +20,78 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 20rem;
+    width: 70%;
     height: 100vh;
+    overflow-y: auto;
     margin: 0px auto;
-    padding: 20px 30px;
-    background-color: $white;
+    padding:1rem;
+    background-color: $penguin-cream-color;
     border-radius: 4px;
     transition: all 0.3s ease;
+  }
+
+
+
+  .title-card-main-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .image-container{
+    width: 40%;
+    max-width: 200px;
+    .card-image-card-component{
+      width: inherit;
+      height: 150px;
+      object-fit: contain;
+    }
+  }
+
+
+  .btn-container-main-footer{
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .modal-default-button-subscription{
+      width: inherit;
+      padding: inherit;
+      margin: 5px 0px;
+      color: $penguin-green-color;
+      border: solid 1px $penguin-green-color;
+    }
+    .modal-default-button-checkout{
+      width: inherit;
+      padding: inherit;
+      margin: 5px 0px;
+      background-color: $penguin-green-color;
+      color:$penguin-white-color ;
+    }
+  }
+  
+
+  .side-inner-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-weight: bold;
+    padding: 6px 10px;
+    border: solid 1px #e6e6e6;
+    cursor: pointer;
+  }
+
+  .footer-card-main-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .btn-container{
+      width: 50%;
+    }
   }
   
   .modal-header h3 {
@@ -81,4 +146,16 @@
   .modal-leave-active .modal-container {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+  }
+
+
+  // ---put custom style here
+  .sidebar-card-layer-contain{
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .45rem 1rem;
+    margin: 1rem;
+    min-height: 12rem;
   }

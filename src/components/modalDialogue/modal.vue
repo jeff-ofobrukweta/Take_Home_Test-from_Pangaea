@@ -9,33 +9,79 @@
             </div>
 
             <div v-if="GET_CART.length" class="modal-body">
-              <ProductCard v-for="(items,index) in GET_CART" :key="index">
+              <!-- <ProductCard v-for="(item,index) in GET_CART" :key="index">
                 <div class="main">
                   <div class="item-left"><div class="title">
-                    {{item_title}}
+                    {{item.title}}
                     <div class="price">
-                      {{item_title}}
+                      {{item.price}}
+                    </div>
+                    <div class="image">
+                      <img :src="item.image" :alt="item.title"/>
                     </div>
                     </div></div>
                   <div class="item-right"></div>
 
                 </div>
-              </ProductCard >
-              
+              </ProductCard > -->
+
+              <ProductCard
+                v-for="(item, index) in GET_CART"
+                :key="index"
+                customClass="sidebar-card-layer-contain"
+              >
+                <div class="title-card-main-container">
+                  <div class="title-card">Dark Circle Defense</div>
+                  <span class="close-button-x">X</span>
+                </div>
+                <div class="title-card-main-container">
+                  <div class="title-card"></div>
+                  <div class="image-container">
+                    <img
+                      class="card-image-card-component"
+                      :alt="item.title"
+                      :src="item.image"
+                    />
+                  </div>
+                </div>
+                <div class="footer-card-main-container">
+                  <div class="btn-container">
+                    <ButtonComponent
+                      customName="add-qty"
+                      eventNameToEmit="add-qty"
+                    >
+                      <span class="side-inner-btn">-</span>
+                      <span class="side-inner-btn">10</span>
+                      <span class="side-inner-btn">+</span>
+                    </ButtonComponent>
+                  </div>
+                  <div class="price-container-main">$12300</div>
+                </div>
+              </ProductCard>
             </div>
             <div v-else>SORRY YOU HAVE NOT YET ADDED ANYTHING TO CART!</div>
 
             <div class="modal-footer">
               <slot name="footer">
-                <div>default footer</div>
-                <ButtonComponent
-                  customName="modal-close"
-                  eventNameToEmit="close"
-                  @close="handleModalClose"
-                  customClass="modal-default-button"
-                >
-                  OK
-                </ButtonComponent>
+                <!-- <div>default footer</div> -->
+                <div class="btn-container-main-footer">
+                  <ButtonComponent
+                    customName="modal-close"
+                    eventNameToEmit="close"
+                    @close="handleModalClose"
+                    customClass="modal-default-button-subscription"
+                  >
+                   MAKE THIS A SUBSCRIPTION (SAVE 20%)
+                  </ButtonComponent>
+                  <ButtonComponent
+                    customName="modal-close"
+                    eventNameToEmit="close"
+                    @close="handleModalClose"
+                    customClass="modal-default-button-checkout"
+                  >
+                    PROCEED TO CHECKOUT
+                  </ButtonComponent>
+                </div>
               </slot>
             </div>
           </div>

@@ -41,7 +41,7 @@
     </div>
 
     <!-- this part is the skelecton loader for bad network -->
-    <div v-else class="loading-card-holder">{{ GET_RESPONSE_ERROR }}</div>
+    <div v-else class="loading-card-holder red-anger">{{ GET_RESPONSE_ERROR }}</div>
   </div>
 </template>
 
