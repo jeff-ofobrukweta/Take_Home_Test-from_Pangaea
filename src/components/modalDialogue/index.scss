@@ -17,10 +17,15 @@
   }
   
   .modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: space-between;
     position: absolute;
     top: 0px;
     right: 0px;
     width: 70%;
+    max-width: 600px;
     height: 100vh;
     overflow-y: auto;
     margin: 0px auto;
@@ -39,7 +44,7 @@
   }
 
   .image-container{
-    width: 40%;
+    width: 100%;
     max-width: 200px;
     .card-image-card-component{
       width: inherit;

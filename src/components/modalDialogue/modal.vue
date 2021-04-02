@@ -9,29 +9,13 @@
             </div>
 
             <div v-if="GET_CART.length" class="modal-body">
-              <!-- <ProductCard v-for="(item,index) in GET_CART" :key="index">
-                <div class="main">
-                  <div class="item-left"><div class="title">
-                    {{item.title}}
-                    <div class="price">
-                      {{item.price}}
-                    </div>
-                    <div class="image">
-                      <img :src="item.image" :alt="item.title"/>
-                    </div>
-                    </div></div>
-                  <div class="item-right"></div>
-
-                </div>
-              </ProductCard > -->
-
               <ProductCard
                 v-for="(item, index) in GET_CART"
                 :key="index"
                 customClass="sidebar-card-layer-contain"
               >
                 <div class="title-card-main-container">
-                  <div class="title-card">Dark Circle Defense</div>
+                  <div class="title-card">{{item.title}}</div>
                   <span class="close-button-x">X</span>
                 </div>
                 <div class="title-card-main-container">
@@ -51,11 +35,11 @@
                       eventNameToEmit="add-qty"
                     >
                       <span class="side-inner-btn">-</span>
-                      <span class="side-inner-btn">10</span>
+                      <span class="side-inner-btn">{{item.quantity}}</span>
                       <span class="side-inner-btn">+</span>
                     </ButtonComponent>
                   </div>
-                  <div class="price-container-main">$12300</div>
+                  <div class="price-container-main">${{item.price}}</div>
                 </div>
               </ProductCard>
             </div>
