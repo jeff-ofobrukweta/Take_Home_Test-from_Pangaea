@@ -37,7 +37,7 @@
         </div>
       </ProductCard>
     </div>
-     <!-- this part is the aolloIsLoading  -->
+    <!-- this part is the aolloIsLoading  -->
 
     <!-- this part is the netweork  error for bad network -->
     <div v-else class="loading-card-holder red-anger">
@@ -62,6 +62,8 @@ import {
   GET_CURRENCY_ACTIONS,
   GET_CART,
   ADD_TO_CART,
+  SET_CURRENT_CURRENCY,
+  GET_CURRENT_CURRENCY,
 } from "./vuex-module/index.types";
 
 import { GET_RESPONSE_ERROR } from "../../store/index.types";
@@ -74,7 +76,7 @@ export default {
   name: "HomePageComponent",
   data() {
     return {
-      currentCurrency: ""
+      currentCurrency: "",
     };
   },
   components: {
@@ -89,23 +91,24 @@ export default {
       GET_CURRENCY,
       GET_MODAL_STATE,
       GET_CART,
+      GET_CURRENT_CURRENCY,
     ]),
   },
   methods: {
     ...mapActions([GET_PRODUCTS_ACTIONS, GET_CURRENCY_ACTIONS]),
-    ...mapMutations([SET_MODAL_STATE, ADD_TO_CART]),
+    ...mapMutations([SET_MODAL_STATE, ADD_TO_CART, SET_CURRENT_CURRENCY]),
     handleModalOpen(e) {
       const { name } = e;
       if (name === "modal-open") this[SET_MODAL_STATE](true);
 
       this[ADD_TO_CART](e);
-    },
+    }
   },
   async mounted() {
     await this[GET_CURRENCY_ACTIONS]();
     const currency = this[GET_CURRENCY][0];
-    this.currentCurrency = currency;
-    await this[GET_PRODUCTS_ACTIONS](this.currentCurrency);
+    this[SET_CURRENT_CURRENCY](currency);
+    await this[GET_PRODUCTS_ACTIONS](this[GET_CURRENT_CURRENCY]);
   },
 };
 </script>

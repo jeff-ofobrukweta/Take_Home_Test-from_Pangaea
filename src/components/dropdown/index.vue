@@ -42,6 +42,9 @@
 </style>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+import { GET_CURRENT_CURRENCY, SET_CURRENT_CURRENCY } from '../../views/Home/vuex-module/index.types';
+
 export default {
   name: "DropDown",
   data() {
@@ -60,9 +63,15 @@ export default {
       default: () => [],
     },
   },
+  computed:{
+    ...mapGetters([
+      GET_CURRENT_CURRENCY
+    ])
+  },
   methods: {
+    ...mapMutations([SET_CURRENT_CURRENCY]),
     handleSearch() {},
-    showCurrencyList() {},
+    showCurrencyList() {}
   },
 };
 </script>

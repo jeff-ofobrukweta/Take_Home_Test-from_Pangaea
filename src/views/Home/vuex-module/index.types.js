@@ -14,4 +14,5 @@ export const REMOVE_ITEM = "REMOVE_ITEM";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const NUMBER = "NUMBER";
 export const REDUCE_ITEM = "REDUCE_ITEM";
-
+export const GET_CURRENT_CURRENCY = "GET_CURRENT_CURRENCY";
+export const SET_CURRENT_CURRENCY = "SET_CURRENT_CURRENCY";

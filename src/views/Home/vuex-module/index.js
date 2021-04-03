@@ -14,12 +14,13 @@ import {
   SET_PRODUCT_LIST,
   GET_PRICE,
   SET_PRICE,
-  SET_ITEMS,
   GET_CART,
   REMOVE_ITEM,
   ADD_TO_CART,
   REDUCE_ITEM,
-  GET_CART_LENGTH
+  GET_CURRENT_CURRENCY,
+  GET_CART_LENGTH,
+  SET_CURRENT_CURRENCY
 } from "./index.types";
 
 import { SET_RESPONSE_ERROR } from "../../../store/index.types";
@@ -29,7 +30,8 @@ const state = {
   productLists: [],
   currencyList: [],
   price: 0,
-  noOfItems: 0
+  noOfItems: 0,
+  currentCurrency: ""
 };
 
 const getters = {
@@ -38,6 +40,7 @@ const getters = {
   [GET_PRICE]: (state) => state.price,
   [GET_CART]: (state) => state.cartItems,
   [GET_CART_LENGTH]: (state) => state.noOfItems,
+  [GET_CURRENT_CURRENCY]: (state) => state.currentCurrency
 };
 
 const mutations = {
@@ -50,8 +53,8 @@ const mutations = {
   [SET_PRICE](state, payload) {
     state.price += payload;
   },
-  [SET_ITEMS](state, payload) {
-    state.noOfItems += payload;
+  [SET_CURRENT_CURRENCY](state, payload) {
+    state.currentCurrency = payload;
   },
 
   // use this if you want to remove an item from the list
