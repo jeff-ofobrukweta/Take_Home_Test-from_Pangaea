@@ -15,6 +15,9 @@
     vertical-align: middle;
     position: relative;
   }
+  .close-button-x{
+    cursor: pointer;
+  }
   
   .modal-container {
     display: flex;
@@ -24,7 +27,7 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 70%;
+    width: 100%;
     max-width: 600px;
     height: 100vh;
     overflow-y: auto;
@@ -33,6 +36,39 @@
     background-color: $penguin-cream-color;
     border-radius: 4px;
     transition: all 0.3s ease;
+    .modal-header{
+      .head-main{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        max-width: inherit;
+        width: 100%;
+        .btn-wrapper{
+          width: 40%;
+          .btn-back{
+            width: 20px;
+            height: 20px;
+            padding: 1rem;
+            border-radius: 100%;
+            margin: 5px;
+          }
+          .arrow-svg{
+            flex-shrink: 0;
+            width: 1em;
+            height: 1em;
+            color: currentcolor;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0.75rem;
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+          }
+        }
+        .your-cart-text{
+          width: 60%;
+        }
+      }
+    }
   }
 
 
@@ -46,9 +82,11 @@
   .image-container{
     width: 100%;
     max-width: 200px;
+    min-height: 10rem;
     .card-image-card-component{
       width: inherit;
       height: 150px;
+      max-width: 88px;
       object-fit: contain;
     }
   }
@@ -56,8 +94,7 @@
 
   .btn-container-main-footer{
     width: 100%;
-    padding: 1rem;
-    margin: 1rem;
+    padding: 1rem 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,6 +164,15 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
+    position: relative;
+    height: 100%;
+    .modal-footer-desc{
+      width: inherit;
+      height: inherit;
+      position: absolute;
+      bottom: 0px;
+    }
   }
   
   
@@ -161,6 +207,6 @@
     flex-direction: column;
     justify-content: space-between;
     padding: .45rem 1rem;
-    margin: 1rem;
+    margin: 1rem 0px;
     min-height: 12rem;
   }

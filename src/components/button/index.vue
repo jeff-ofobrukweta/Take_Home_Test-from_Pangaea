@@ -21,38 +21,27 @@ export default {
       default: "",
       required: true,
     },
-    keyid: {
-      type: Number,
-      default: 10000,
-    },
     eventNameToEmit: {
       type: String,
       default: "buttonClick",
       required: true,
     },
-    item_title: {
-      type: String,
-      default: "empty",
+    item: {
+      type: Object
     },
-    item_image: {
-      type: String,
-      default: "empty",
-    },
-    item_price: {
-      type: Number,
-      default: 10000,
-    },
+    keyId:{
+      type : Number,
+      default : 100
+    }
   },
   methods: {
     handleButtonAction() {
       this.$emit(`${this.eventNameToEmit}`, {
         name: this.customName,
         items: {
-          id: this.keyid,
-          title: this.item_title,
-          price: this.item_price,
-          image: this.item_image,
+         ...this.item,
           quantity: 1,
+          id : this.keyId
         },
       });
     },

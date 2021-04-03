@@ -5,68 +5,11 @@
         <div class="modal-wrapper">
           <div class="modal-container">
             <div class="modal-header">
-              <slot name="header"> default header </slot>
+              <slot name="header"></slot>
             </div>
-
-            <div v-if="GET_CART.length" class="modal-body">
-              <ProductCard
-                v-for="(item, index) in GET_CART"
-                :key="index"
-                customClass="sidebar-card-layer-contain"
-              >
-                <div class="title-card-main-container">
-                  <div class="title-card">{{item.title}}</div>
-                  <span class="close-button-x">X</span>
-                </div>
-                <div class="title-card-main-container">
-                  <div class="title-card"></div>
-                  <div class="image-container">
-                    <img
-                      class="card-image-card-component"
-                      :alt="item.title"
-                      :src="item.image"
-                    />
-                  </div>
-                </div>
-                <div class="footer-card-main-container">
-                  <div class="btn-container">
-                    <ButtonComponent
-                      customName="add-qty"
-                      eventNameToEmit="add-qty"
-                    >
-                      <span class="side-inner-btn">-</span>
-                      <span class="side-inner-btn">{{item.quantity}}</span>
-                      <span class="side-inner-btn">+</span>
-                    </ButtonComponent>
-                  </div>
-                  <div class="price-container-main">${{item.price}}</div>
-                </div>
-              </ProductCard>
-            </div>
-            <div v-else>SORRY YOU HAVE NOT YET ADDED ANYTHING TO CART!</div>
-
+            <slot name="body"></slot>
             <div class="modal-footer">
-              <slot name="footer">
-                <!-- <div>default footer</div> -->
-                <div class="btn-container-main-footer">
-                  <ButtonComponent
-                    customName="modal-close"
-                    eventNameToEmit="close"
-                    @close="handleModalClose"
-                    customClass="modal-default-button-subscription"
-                  >
-                   MAKE THIS A SUBSCRIPTION (SAVE 20%)
-                  </ButtonComponent>
-                  <ButtonComponent
-                    customName="modal-close"
-                    eventNameToEmit="close"
-                    @close="handleModalClose"
-                    customClass="modal-default-button-checkout"
-                  >
-                    PROCEED TO CHECKOUT
-                  </ButtonComponent>
-                </div>
-              </slot>
+              <slot name="footer"></slot>
             </div>
           </div>
         </div>
@@ -80,34 +23,9 @@
 </style>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
-import { GET_CART } from "../../views/Home/vuex-module/index.types";
-import ButtonComponent from "../button/index";
-import ProductCard from "../productCard/index";
-import { GET_MODAL_STATE, SET_MODAL_STATE } from "./vuex-module/index.types";
-
 export default {
   name: "ModalTemplateBase",
-  components: {
-    ButtonComponent,
-    ProductCard,
-  },
-  computed: {
-    ...mapGetters([GET_CART, GET_MODAL_STATE]),
-  },
-
-  methods: {
-    ...mapMutations([SET_MODAL_STATE]),
-    handleModalClose(e) {
-      if (e.name === "modal-close") {
-        this[SET_MODAL_STATE](false);
-      }
-    },
-  },
-  props: {
-    closeModal: {
-      type: Boolean,
-    },
-  },
+  components: {},
+  computed: {},
 };
 </script>

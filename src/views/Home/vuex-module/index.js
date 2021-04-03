@@ -14,13 +14,12 @@ import {
   SET_PRODUCT_LIST,
   GET_PRICE,
   SET_PRICE,
-  GET_ITEMS,
   SET_ITEMS,
   GET_CART,
   REMOVE_ITEM,
   ADD_TO_CART,
-  NUMBER,
-  REDUCE_ITEM
+  REDUCE_ITEM,
+  GET_CART_LENGTH
 } from "./index.types";
 
 import { SET_RESPONSE_ERROR } from "../../../store/index.types";
@@ -37,8 +36,8 @@ const getters = {
   [GET_PRODUCT]: (state) => state.productLists,
   [GET_CURRENCY]: (state) => state.currencyList,
   [GET_PRICE]: (state) => state.price,
-  [GET_ITEMS]: (state) => state.noOfItems,
-  [GET_CART]: (state) => state.cartItems
+  [GET_CART]: (state) => state.cartItems,
+  [GET_CART_LENGTH]: (state) => state.noOfItems,
 };
 
 const mutations = {
@@ -72,40 +71,60 @@ const mutations = {
       return e;
     });
   },
-  // use this if you want to get the number of items in cart
-  [NUMBER](state) {
-    const totalCartLength = state.cartItems.reduce((acc, { quantity }) => {
-      return acc + quantity;
-    });
-    state.noOfItems = totalCartLength;
-  },
-  // use this mutation when you want to add to cart {id,title,image,price,1}
+
 
   [ADD_TO_CART](state, payload) {
+    let pushTest = false;
+    let storeCartAmt = 0;
+    let quantityCount = 0;
+    const DEC = "DEC";
 
-    // check if the array contains the payload
-    // if it ontains the payload -- increment the quantity value
-    if (state.cartItems.length === 0) {
-      state.cartItems.push(payload);
-      return;
+    switch (payload.type) {
+      case DEC:
+        // if the current quantity value of item in cart is equal to 1 delete that obj from the array
+        state.cartItems.forEach((item, j) => {
+          if (item.id === payload.items.id) {
+            quantityCount = payload.items.quantity;
+            if (quantityCount <= 1) {
+              const newCartState = state.cartItems.filter((s) => s.id !== item.id);
+              state.cartItems = newCartState;
+            }
+            else if (quantityCount > 1) {
+              let num = { ...item, quantity: item?.quantity - 1 };
+              console.log("> after num", num);
+              state.cartItems[j] = num;
+            }
+          }
+        });
+        // get the len of items in the cart
+        state.cartItems.forEach((cartItem) => {
+          storeCartAmt += cartItem.quantity;
+        });
+
+        state.noOfItems = storeCartAmt;
+        // if the current quantity value in the cart is > 1 , reduce the quantity by 1
+        // compute the new length of the cart
+        break;
+
+      default:
+        state.cartItems.forEach((a, i) => {
+          if (a.id === payload.items.id) {
+            const num = { ...a, quantity: a.quantity + 1 };
+            state.cartItems[i] = num;
+            pushTest = true;
+          }
+        });
+
+        if (!pushTest) state.cartItems.push(payload.items);
+
+        // get the len of items in the cart
+        state.cartItems.forEach((cartItem) => {
+          storeCartAmt += cartItem.quantity;
+        });
+
+        state.noOfItems = storeCartAmt;
 
     }
-
-    let pushTest = false;
-    state.cartItems.forEach((a, i) => {
-      if (a.id === payload.id) {
-        const num = { ...a, quantity: a.quantity + 1 };
-        state.cartItems[i] = num;
-        pushTest = true;
-      }
-    });
-    if (!pushTest) state.cartItems.push(payload);
-
-
-
-
-
-
   },
   // you call this set cart mutation when you want to increase cart num with id as payload
 
@@ -115,6 +134,12 @@ const mutations = {
   [REMOVE_ITEM](state, payload) {
     const newSet = state.cartItems.filter((s) => s.id !== payload);
     state.cartItems = newSet;
+    let storeCartAmt = 0;
+    state.cartItems.forEach((cartItem) => {
+      storeCartAmt += cartItem.quantity;
+    });
+
+    state.noOfItems = storeCartAmt;
   }
 
 };
