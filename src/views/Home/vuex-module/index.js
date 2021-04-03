@@ -68,7 +68,6 @@ const mutations = {
             ...e,
             quantity
           }
-
         }
       }
       return e;
@@ -93,8 +92,7 @@ const mutations = {
               state.cartItems = newCartState;
             }
             else if (quantityCount > 1) {
-              let num = { ...item, quantity: item?.quantity - 1 };
-              console.log("> after num", num);
+              const num = { ...item, quantity: item?.quantity - 1 };
               state.cartItems[j] = num;
             }
           }

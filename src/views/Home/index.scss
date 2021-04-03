@@ -9,12 +9,19 @@
   padding-left: 0rem;
   padding-right: 0rem;
 }
+
+.wrapper-p-main{padding-top: 5rem;}
 .red-anger{
   padding: 1rem;
-  background-color: red;
+  color: $background-dark;
   font-weight: bold;
   display: flex;
   justify-content: center;
+}
+
+.contain-product-360{
+  padding: 2.5rem;
+  background-color:$penguin-light-cream-color;
 }
 
 
@@ -30,10 +37,7 @@
 }
 .chakra-text{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 2rem;
+  height: 3rem;
 }
 .image{
   display: flex;
@@ -79,6 +83,7 @@
   font-size: 0.8125rem;
   line-height: 1.7;
   margin-top: 0.5rem;
+  text-align: center;
   margin-bottom: 0.5rem;
 }
 
@@ -86,6 +91,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  color: $penguin-black-color;
 }
 
 .css-5d7bjs > :not(style) ~ :not(style) {
@@ -99,6 +105,20 @@
   line-height: 1.7;
   margin-left: 0rem;
   margin-right: 0.25rem;
+}
+
+.css-mafqmj {
+  padding: 3rem 2rem;
+}
+
+.css-6zdeqh {
+  font-family: $penguin-fonts,serif;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.25em;
+}
+.css-12eueq9 {
+  margin-top: 0.75rem;
 }
 
 // media query mobile

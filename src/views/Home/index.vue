@@ -1,47 +1,58 @@
 <template>
-  <div class="home-component">
-    <Sidebar />
-
-    <div v-if="GET_PRODUCT.length" class="product-wrapper">
-      <ProductCard
-        v-for="(item, index) in GET_PRODUCT"
-        :key="index"
-        customClass="custom-class-card-holder"
-      >
-        <div class="image">
-          <router-link to="/products" class="inherit-style wrapper-image">
-            <img
-              class="inherit-style image-card-component"
-              alt="Modern Bathroom Set"
-              :src="item.image_url"
-            />
-          </router-link>
-        </div>
-        <h2 class="chakra-text css-1mujpit">{{ item.title }}</h2>
-        <div class="css-1o2ui0u">
-          <p class="chakra-text css-1v9wznn">From:</p>
-          <p class="chakra-text css-mgwhu5">NGN&nbsp;{{ item.price }}</p>
-        </div>
-        <div class="button-custom">
-          <ButtonComponent
-            typed="add"
-            :keyId="index"
-            customName="modal-open"
-            eventNameToEmit="open"
-            :item="item"
-            @open="handleModalOpen"
-            customClass="btn-background"
-          >
-            Add to Cart
-          </ButtonComponent>
-        </div>
-      </ProductCard>
+  <div>
+    <HeaderNavbar />
+    <div class="contain-product-360">
+    <div class="all-products-360 product-wrapper">
+      <div class="css-mafqmj">
+        <h1 class="chakra-heading css-6zdeqh">All Products</h1>
+        <p class="chakra-text css-12eueq9">A 360° look at Lumin</p>
+      </div>
+      <div class="chakra-select__wrapper css-42b2qy"></div>
     </div>
-    <!-- this part is the aolloIsLoading  -->
+    </div>
+    <div class="home-component">
+      <Sidebar />
+      <div v-if="GET_PRODUCT.length" class="product-wrapper wrapper-p-main">
+        <ProductCard
+          v-for="(item, index) in GET_PRODUCT"
+          :key="index"
+          customClass="custom-class-card-holder"
+        >
+          <div class="image">
+            <router-link to="/products" class="inherit-style wrapper-image">
+              <img
+                class="inherit-style image-card-component"
+                alt="Modern Bathroom Set"
+                :src="item.image_url"
+              />
+            </router-link>
+          </div>
+          <h2 class="chakra-text css-1mujpit">{{ item.title }}</h2>
+          <div class="css-1o2ui0u">
+            <p class="chakra-text css-1v9wznn">From:</p>
+            <p class="chakra-text css-mgwhu5">NGN&nbsp;{{ item.price }}</p>
+          </div>
+          <div class="button-custom">
+            <ButtonComponent
+              typed="add"
+              :keyId="index"
+              customName="modal-open"
+              eventNameToEmit="open"
+              :item="item"
+              @open="handleModalOpen"
+              customClass="btn-background"
+            >
+              Add to Cart
+            </ButtonComponent>
+          </div>
+        </ProductCard>
+      </div>
+      <!-- this part is the aolloIsLoading  -->
 
-    <!-- this part is the netweork  error for bad network -->
-    <div v-else class="loading-card-holder red-anger">
-      {{ GET_RESPONSE_ERROR }}
+      <!-- this part is the netweork  error for bad network -->
+      <div v-else class="loading-card-holder red-anger">
+        {{ GET_RESPONSE_ERROR }}
+      </div>
     </div>
   </div>
 </template>
@@ -55,6 +66,7 @@ import { mapGetters, mapActions, mapMutations } from "vuex";
 import ButtonComponent from "../../components/button/index";
 import ProductCard from "../../components/productCard/index";
 import Sidebar from "../../components/sidebarCart/index";
+import HeaderNavbar from "../../components/headerComponent/index";
 import {
   GET_PRODUCT,
   GET_CURRENCY,
@@ -83,6 +95,7 @@ export default {
     ButtonComponent,
     ProductCard,
     Sidebar,
+    HeaderNavbar
   },
   computed: {
     ...mapGetters([
@@ -100,9 +113,8 @@ export default {
     handleModalOpen(e) {
       const { name } = e;
       if (name === "modal-open") this[SET_MODAL_STATE](true);
-
       this[ADD_TO_CART](e);
-    }
+    },
   },
   async mounted() {
     await this[GET_CURRENCY_ACTIONS]();
