@@ -10,11 +10,10 @@
   background-color:$penguin-light-cream-color;
   margin-right: 0rem;
   padding-top: 0.5rem;
-  color: rgb(0, 0, 0);
-  border-bottom: 1px solid rgb(41, 41, 41);
-  border-top-color: rgb(41, 41, 41);
-  border-right-color: rgb(41, 41, 41);
-  border-left-color: rgb(41, 41, 41);
+  color: $penguin-black-color;
+  border-top-color: $penguin-deep-black-color;
+  border-right-color: $penguin-deep-black-color;
+  border-left-color: $penguin-deep-black-color;
   .image_container{
     display: inline-block;
     width: 163px;
@@ -29,6 +28,27 @@
 
 }
 
+.header-main-navigation-container{
+  position:relative;
+  .navigate-holder{
+    top: 0rem;
+    width: 100%;
+    position: fixed;
+    background-color: initial;
+    z-index: 1;
+    box-shadow: 0 2px 3px -3px $penguin-grey-color;
+  }
+}
+
+
+
+.header-main-left{width: 50%;}
+.header-main-right{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .cart-container{
   width: 28px;
   height: 28px;
@@ -37,7 +57,11 @@
   justify-content: space-between;
   align-items: flex-start;
   cursor: pointer;
-  margin-right: 1rem;
+  margin-right: 6rem;
+  .cart-number{
+    position: relative;
+    top: -19px;
+  }
 }
 
 .cart-icon{

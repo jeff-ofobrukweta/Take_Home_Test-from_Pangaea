@@ -1,14 +1,23 @@
 <template>
-  <nav class="header-main navigation-container">
-    <div class="header-main-left"><div class="image_container"><img :src="LuminLogo" class="image_logo" alt="LOGO"></div></div>
-    <div class="header-main-right">
-      <div @click="handleModal" class="cart-container">
-        <img :src="Cart" alt="shoping cart" class="cart-icon" />
-        <span class="cart-number">{{ GET_CART_LENGTH }}</span>
-      </div>
-      <div class="select-container"></div>
+  <div class="header-main-navigation-container">
+    <div class="navigate-holder">
+      <nav class="header-main navigation-container">
+        <div class="header-main-left">
+          <div class="image_container">
+            <img :src="LuminLogo" class="image_logo" alt="LOGO" />
+          </div>
+        </div>
+        <div class="header-main-right">
+          <div @click="handleModal" class="cart-container">
+            <span class="account">Account</span>
+            <img :src="Cart" alt="shoping cart" class="cart-icon" />
+            <span class="cart-number">{{ GET_CART_LENGTH }}</span>
+          </div>
+          <div class="select-container"></div>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -30,7 +39,7 @@ export default {
   data() {
     return {
       Cart,
-      LuminLogo
+      LuminLogo,
     };
   },
   components: {},
@@ -43,7 +52,7 @@ export default {
       this[SET_MODAL_STATE](!this[GET_MODAL_STATE]);
     },
   },
- 
+
   props: {},
 };
 </script>
