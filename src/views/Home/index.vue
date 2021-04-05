@@ -19,7 +19,7 @@
           customClass="custom-class-card-holder"
         >
           <div class="image">
-            <router-link to="/products" class="inherit-style wrapper-image">
+            <router-link to="#" class="inherit-style wrapper-image">
               <img
                 class="inherit-style image-card-component"
                 alt="Modern Bathroom Set"
