@@ -16,3 +16,7 @@ export const NUMBER = "NUMBER";
 export const REDUCE_ITEM = "REDUCE_ITEM";
 export const GET_CURRENT_CURRENCY = "GET_CURRENT_CURRENCY";
 export const SET_CURRENT_CURRENCY = "SET_CURRENT_CURRENCY";
+export const GET_TOTAL_PRICE = "GET_TOTAL_PRICE";
+export const GET_LOADING = "GET_LOADING";
+export const SET_LOADING = "SET_LOADING";
+

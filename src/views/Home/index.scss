@@ -37,7 +37,9 @@
 }
 .chakra-text{
   display: flex;
-  height: 3rem;
+  min-height: 3rem;
+  max-height: 3rem;
+  color: $penguin-black-color;
 }
 .image{
   display: flex;

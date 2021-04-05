@@ -2,7 +2,6 @@
   <div class="transparent-holder">
     <ModalDialogue>
       <ProductCard customClass="side-bar-product-card">
-        hello world
       </ProductCard>
     </ModalDialogue>
   </div>

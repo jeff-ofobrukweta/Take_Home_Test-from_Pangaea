@@ -1,6 +1,7 @@
 <template>
   <div class="dropdown">
     <button
+      title="CLICK TO CHANGE CURRENCY"
       @click="currencyOpen = !currencyOpen"
       :class="`dropbtn ${customClass}`"
     >
@@ -15,7 +16,8 @@
           <path
             fill="currentColor"
             d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"
-          ></path></svg>
+          ></path>
+        </svg>
       </span>
     </button>
     <div id="myDropdown" v-show="currencyOpen" class="drop">
@@ -23,15 +25,19 @@
         type="text"
         placeholder="Search.."
         id="myInput"
-        @keyup="handleSearch"
+        v-model="inputField"
+        @input="handleSearch"
       />
       <div class="contain-list-search">
-        <div class="drop-down-item-list">About</div>
-        <div class="drop-down-item-list">Base</div>
-        <div class="drop-down-item-list">Blog</div>
-        <div class="drop-down-item-list">Contact</div>
-        <div class="drop-down-item-list">Custom</div>
-        <div class="drop-down-item-list">Tools</div>
+        <div
+          v-for="(c, i) in currency"
+          @click="changeCurrency(c)"
+          :key="i"
+          :title="c"
+          class="drop-down-item-list"
+        >
+          {{ c }}
+        </div>
       </div>
     </div>
   </div>
@@ -42,10 +48,12 @@
 </style>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import {
   GET_CURRENT_CURRENCY,
   SET_CURRENT_CURRENCY,
+  GET_CURRENCY,
+  GET_PRODUCTS_ACTIONS,
 } from "../../views/Home/vuex-module/index.types";
 
 export default {
@@ -53,6 +61,8 @@ export default {
   data() {
     return {
       currencyOpen: false,
+      inputField: "",
+      currency: () => [],
     };
   },
   components: {},
@@ -67,12 +77,32 @@ export default {
     },
   },
   computed: {
-    ...mapGetters([GET_CURRENT_CURRENCY]),
+    ...mapGetters([GET_CURRENT_CURRENCY, GET_CURRENCY]),
   },
   methods: {
     ...mapMutations([SET_CURRENT_CURRENCY]),
-    handleSearch() {},
+    ...mapActions([GET_PRODUCTS_ACTIONS]),
+    async changeCurrency(e) {
+      // make api call to the apolo server to change the current currency
+      await this[GET_PRODUCTS_ACTIONS](e);
+      // change the current currency
+      this[SET_CURRENT_CURRENCY](e);
+      this.currencyOpen = false;
+      this.inputField = "";
+      // this.$forceUpdate();
+    },
+    handleSearch() {
+      if (this.inputField.length) {
+        const apf = this[GET_CURRENCY].filter((e) =>
+          e.toLowerCase().includes(this.inputField.toLowerCase())
+        );
+        this.currency = apf.splice(0, 5);
+      }
+    },
     showCurrencyList() {},
+  },
+  mounted() {
+    this.currency = this[GET_CURRENCY].splice(0, 5);
   },
 };
 </script>

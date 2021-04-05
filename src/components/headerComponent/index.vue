@@ -42,9 +42,7 @@ export default {
       this[SET_MODAL_STATE](!this[GET_MODAL_STATE]);
     },
   },
-  mounted() {
-    console.log(this[GET_CART]);
-  },
+ 
   props: {},
 };
 </script>

@@ -30,7 +30,7 @@
           <h2 class="chakra-text css-1mujpit">{{ item.title }}</h2>
           <div class="css-1o2ui0u">
             <p class="chakra-text css-1v9wznn">From:</p>
-            <p class="chakra-text css-mgwhu5">NGN&nbsp;{{ item.price }}</p>
+            <p class="chakra-text css-mgwhu5">{{GET_CURRENT_CURRENCY}}&nbsp;{{ item.price }}</p>
           </div>
           <div class="button-custom">
             <ButtonComponent
@@ -48,6 +48,31 @@
         </ProductCard>
       </div>
       <!-- this part is the aolloIsLoading  -->
+       <div v-if="false" class="product-wrapper wrapper-p-main">
+         <ProductCard
+          v-for="(item, index) in [1,2,3,4]"
+          :key="index"
+          customClass="custom-class-card-loader-holder">
+          <div class="image">
+            image here
+          </div>
+          <h2 class="chakra-text css-1mujpit"></h2>
+          <div class="css-1o2ui0u">
+            price here
+          </div>
+          <div class="button-custom">
+            buton here
+          </div>
+          </ProductCard>
+       </div>
+
+
+       <!-- this section is for empty product in rhe all product scenerio -->
+       <div v-if="false" class="product-wrapper wrapper-p-main">
+         <div class="empty-product-show-all">
+           There are no product to showcase currently...
+         </div>
+       </div>
 
       <!-- this part is the netweork  error for bad network -->
       <div v-else class="loading-card-holder red-anger">
@@ -88,7 +113,6 @@ export default {
   name: "HomePageComponent",
   data() {
     return {
-      currentCurrency: "",
     };
   },
   components: {

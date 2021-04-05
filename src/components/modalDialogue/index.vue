@@ -27,14 +27,16 @@
             <div class="your-cart-text">YOUR CART</div>
           </div>
           <div class="dropdown">
-            <DropdownSearch customClass="custom-dropdown" />
+            <DropdownSearch
+              customClass="custom-dropdown"
+            />
           </div>
         </div>
         <div slot="body">
           <div v-if="GET_CART.length" class="modal-body">
             <ProductCard
               v-for="item in GET_CART"
-              :key="item.quantity"
+              :key="item.id"
               customClass="sidebar-card-layer-contain"
             >
               <div class="title-card-main-container">
@@ -73,7 +75,9 @@
                   </ButtonComponent>
                 </div>
                 <div class="price-container-main">
-                  ${{ item.quantity * item.price }}
+                  {{ GET_CURRENT_CURRENCY }}&nbsp;{{
+                    item.quantity * item.price
+                  }}
                 </div>
               </div>
             </ProductCard>
@@ -82,6 +86,12 @@
         </div>
 
         <div slot="footer" class="modal-footer-desc">
+          <div class="total-sum-container-main">
+            <div class="sub-total">Subtotal</div>
+            <div class="sub-total">
+              {{ GET_CURRENT_CURRENCY }}&nbsp; {{ GET_TOTAL_PRICE }}
+            </div>
+          </div>
           <div class="btn-container-main-footer">
             <ButtonComponent
               customName="modal-close"
@@ -117,6 +127,10 @@ import {
   GET_CART,
   REMOVE_ITEM,
   ADD_TO_CART,
+  GET_CURRENT_CURRENCY,
+  GET_TOTAL_PRICE,
+  GET_PRODUCT,
+  SET_CART,
 } from "../../views/Home/vuex-module/index.types";
 
 export default {
@@ -130,19 +144,27 @@ export default {
   data() {
     return {
       modalState: false,
+      totalSum: 0.0,
     };
   },
   computed: {
-    ...mapGetters([GET_MODAL_STATE, GET_CART]),
+    ...mapGetters([
+      GET_MODAL_STATE,
+      GET_TOTAL_PRICE,
+      GET_CURRENT_CURRENCY,
+      GET_CART,
+      GET_PRODUCT,
+    ]),
   },
+
   methods: {
-    ...mapMutations([SET_MODAL_STATE, REMOVE_ITEM, ADD_TO_CART]),
+    ...mapMutations([SET_MODAL_STATE, SET_CART, REMOVE_ITEM, ADD_TO_CART]),
     handleModalClose(e) {
       if (e.name === "modal-close") {
         this[SET_MODAL_STATE](false);
       }
     },
-    closeItem(e) {
+   closeItem(e) {
       this[REMOVE_ITEM](e);
     },
     addRem(e) {
@@ -150,6 +172,7 @@ export default {
       this.$forceUpdate();
     },
   },
+
   props: {
     closeModal: {
       type: Boolean,
@@ -157,7 +180,7 @@ export default {
     showModal: {
       type: Boolean,
       default: false,
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view />
+    <div class="loading"></div>
   </div>
 </template>
 

@@ -12,16 +12,21 @@ import {
   GET_PRODUCT,
   GET_PRODUCTS_ACTIONS,
   SET_PRODUCT_LIST,
-  GET_PRICE,
   SET_PRICE,
   GET_CART,
   REMOVE_ITEM,
   ADD_TO_CART,
   REDUCE_ITEM,
+  SET_CART,
   GET_CURRENT_CURRENCY,
   GET_CART_LENGTH,
-  SET_CURRENT_CURRENCY
+  SET_CURRENT_CURRENCY,
+  GET_TOTAL_PRICE,
+  GET_LOADING,
+  SET_LOADING
+
 } from "./index.types";
+
 
 import { SET_RESPONSE_ERROR } from "../../../store/index.types";
 
@@ -29,20 +34,54 @@ const state = {
   cartItems: [],
   productLists: [],
   currencyList: [],
-  price: 0,
   noOfItems: 0,
-  currentCurrency: ""
+  currentCurrency: "",
+  totalPrice: 0.00,
+  isLoading: true
 };
+
+const changePrice = () => {
+  const currentNew = [];
+  state.cartItems.forEach((ert) => {
+    const { title } = ert;
+    state.productLists.forEach((e) => {
+      if (title === e.title) {
+        const p = e.price;
+        const obj = {
+          ...ert,
+          price: p,
+        };
+        currentNew.push(obj);
+      }
+    });
+  });
+  return currentNew;
+
+};
+
+const getTotal = () => {
+  let ttt = 0.0;
+  if (state.cartItems) {
+    state.cartItems.forEach((element) => {
+      const g = element.price * element.quantity;
+      ttt += g;
+    });
+  }
+  return ttt;
+};
+
+
+
 
 const getters = {
   [GET_PRODUCT]: (state) => state.productLists,
   [GET_CURRENCY]: (state) => state.currencyList,
-  [GET_PRICE]: (state) => state.price,
   [GET_CART]: (state) => state.cartItems,
   [GET_CART_LENGTH]: (state) => state.noOfItems,
-  [GET_CURRENT_CURRENCY]: (state) => state.currentCurrency
-};
-
+  [GET_CURRENT_CURRENCY]: (state) => state.currentCurrency,
+  [GET_TOTAL_PRICE]: (state) => state.totalPrice,
+  [GET_LOADING]: (state) => state.isLoading
+}
 const mutations = {
   [SET_PRODUCT_LIST](state, payload) {
     state.productLists = payload;
@@ -51,7 +90,13 @@ const mutations = {
     state.currencyList = payload;
   },
   [SET_PRICE](state, payload) {
-    state.price += payload;
+    state.totalPrice += payload;
+  },
+  [SET_CART](state, payload) {
+    state.cartItems = payload;
+  },
+  [SET_LOADING](state, payload) {
+    state.isLoading = payload;
   },
   [SET_CURRENT_CURRENCY](state, payload) {
     state.currentCurrency = payload;
@@ -103,6 +148,7 @@ const mutations = {
         });
 
         state.noOfItems = storeCartAmt;
+        state.totalPrice = getTotal();
         // if the current quantity value in the cart is > 1 , reduce the quantity by 1
         // compute the new length of the cart
         break;
@@ -124,8 +170,8 @@ const mutations = {
         });
 
         state.noOfItems = storeCartAmt;
-
     }
+    state.totalPrice = getTotal();
   },
   // you call this set cart mutation when you want to increase cart num with id as payload
 
@@ -141,6 +187,8 @@ const mutations = {
     });
 
     state.noOfItems = storeCartAmt;
+    state.totalPrice = getTotal();
+
   }
 
 };
@@ -148,8 +196,15 @@ const mutations = {
 const actions = {
   [GET_PRODUCTS_ACTIONS]: async ({ commit }, payload) => {
     try {
+      commit(SET_LOADING, true, { root: true });
       const { products } = await getQuery(GET_PRODUCT_QUERY(payload));
       commit(SET_PRODUCT_LIST, products, { root: true });
+      if (state.cartItems) {
+        commit(SET_CART, changePrice(), { root: true });
+        commit(SET_PRICE, getTotal(), { root: true })
+      }
+      commit(SET_LOADING, false, { root: true });
+
     } catch (err) {
       commit(SET_RESPONSE_ERROR, err, { root: true });
     }
