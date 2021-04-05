@@ -82,7 +82,7 @@
               </div>
             </ProductCard>
           </div>
-          <div v-else>SORRY YOU HAVE NOT YET ADDED ANYTHING TO CART!</div>
+          <div class="emty-cart account" v-else>SORRY YOU HAVE NOT YET ADDED ANYTHING TO CART!</div>
         </div>
 
         <div slot="footer" class="modal-footer-desc">

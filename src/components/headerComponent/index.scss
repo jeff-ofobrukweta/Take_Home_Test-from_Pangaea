@@ -59,9 +59,28 @@
   cursor: pointer;
   margin-right: 6rem;
   .cart-number{
+    font-size: 25px;
+    line-height: 17px;
+    margin-right: 0rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
     position: relative;
     top: -19px;
   }
+}
+
+.account{
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 0rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
 }
 
 .cart-icon{
