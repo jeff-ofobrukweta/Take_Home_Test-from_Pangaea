@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    errorResp: []
+    errorResp: ""
   },
   getters: {
     [GET_RESPONSE_ERROR]: (state) => state.errorResp

@@ -48,12 +48,12 @@
         </ProductCard>
       </div>
       <!-- this part is the aolloIsLoading  -->
-       <div v-if="false" class="product-wrapper wrapper-p-main">
+       <div v-if="!GET_LOADING" class="product-wrapper wrapper-p-main">
          <ProductCard
-          v-for="(item, index) in [1,2,3,4]"
+          v-for="(item, index) in [1,2,3,4,5,6,7]"
           :key="index"
-          customClass="custom-class-card-loader-holder">
-          <div class="image">
+          customClass="custom-class-card-loader-holder custom-class-card-holder">
+          <div class="loader-image">
             image here
           </div>
           <h2 class="chakra-text css-1mujpit"></h2>
@@ -68,14 +68,14 @@
 
 
        <!-- this section is for empty product in rhe all product scenerio -->
-       <div v-if="false" class="product-wrapper wrapper-p-main">
+       <div v-if="!GET_PRODUCT.length" class="product-wrapper wrapper-p-main">
          <div class="empty-product-show-all">
            There are no product to showcase currently...
          </div>
        </div>
 
       <!-- this part is the netweork  error for bad network -->
-      <div v-else class="loading-card-holder red-anger">
+      <div v-if="GET_RESPONSE_ERROR" class="loading-card-holder red-anger">
         {{ GET_RESPONSE_ERROR }}
       </div>
     </div>
@@ -101,6 +101,7 @@ import {
   ADD_TO_CART,
   SET_CURRENT_CURRENCY,
   GET_CURRENT_CURRENCY,
+  GET_LOADING
 } from "./vuex-module/index.types";
 
 import { GET_RESPONSE_ERROR } from "../../store/index.types";
@@ -129,6 +130,7 @@ export default {
       GET_MODAL_STATE,
       GET_CART,
       GET_CURRENT_CURRENCY,
+      GET_LOADING
     ]),
   },
   methods: {

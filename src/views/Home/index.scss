@@ -136,3 +136,32 @@
     max-width: 100%;
   }
 }
+
+.loader-image{
+  box-shadow: none;
+  background-clip: padding-box;
+  cursor: default;
+  color: transparent;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 180px;
+  border-radius: 5px;
+  -webkit-animation: animation-loader 0.6s linear 0s infinite alternate none running;
+  animation: animation-loader 0.6s linear 0s infinite alternate none running;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+@keyframes animation-loader  {
+  0%{
+    border-color: #e0e2e0;
+    background: #e0e2e0;
+  }
+  100%{
+    border-color: #cdd1ce;
+    background: #cdd1ce;
+  }
+}

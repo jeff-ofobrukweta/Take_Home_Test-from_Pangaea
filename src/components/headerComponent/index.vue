@@ -1,6 +1,6 @@
 <template>
   <nav class="header-main navigation-container">
-    <div class="header-main-left">1</div>
+    <div class="header-main-left"><div class="image_container"><img :src="LuminLogo" class="image_logo" alt="LOGO"></div></div>
     <div class="header-main-right">
       <div @click="handleModal" class="cart-container">
         <img :src="Cart" alt="shoping cart" class="cart-icon" />
@@ -15,7 +15,6 @@
 import { mapGetters, mapMutations } from "vuex";
 import {
   NUMBER,
-  GET_CART,
   GET_CART_LENGTH,
 } from "../../views/Home/vuex-module/index.types";
 import {
@@ -24,12 +23,14 @@ import {
 } from "../modalDialogue/vuex-module/index.types";
 
 import Cart from "../../assets/images/icons/cart.png";
+import LuminLogo from "../../assets/images/lumin_logo.png";
 
 export default {
   name: "HeaderComponent",
   data() {
     return {
-      Cart
+      Cart,
+      LuminLogo
     };
   },
   components: {},

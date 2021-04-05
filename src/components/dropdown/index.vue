@@ -22,7 +22,7 @@
     </button>
     <div id="myDropdown" v-show="currencyOpen" class="drop">
       <input
-        type="text"
+        type="search"
         placeholder="Search.."
         id="myInput"
         v-model="inputField"
@@ -54,6 +54,7 @@ import {
   SET_CURRENT_CURRENCY,
   GET_CURRENCY,
   GET_PRODUCTS_ACTIONS,
+  SET_CURRENCY,
 } from "../../views/Home/vuex-module/index.types";
 
 export default {
@@ -73,29 +74,28 @@ export default {
     },
     listItems: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
   },
   computed: {
     ...mapGetters([GET_CURRENT_CURRENCY, GET_CURRENCY]),
   },
   methods: {
-    ...mapMutations([SET_CURRENT_CURRENCY]),
+    ...mapMutations([SET_CURRENT_CURRENCY, SET_CURRENCY]),
     ...mapActions([GET_PRODUCTS_ACTIONS]),
     async changeCurrency(e) {
       // make api call to the apolo server to change the current currency
       await this[GET_PRODUCTS_ACTIONS](e);
       // change the current currency
-      this[SET_CURRENT_CURRENCY](e);
       this.currencyOpen = false;
+      this[SET_CURRENT_CURRENCY](e);
       this.inputField = "";
-      // this.$forceUpdate();
     },
     handleSearch() {
       if (this.inputField.length) {
-        const apf = this[GET_CURRENCY].filter((e) =>
-          e.toLowerCase().includes(this.inputField.toLowerCase())
-        );
+        const apf = this[GET_CURRENCY].filter((e) => {
+          return e.toUpperCase().includes(this.inputField.toUpperCase());
+        });
         this.currency = apf.splice(0, 5);
       }
     },
@@ -103,6 +103,7 @@ export default {
   },
   mounted() {
     this.currency = this[GET_CURRENCY].splice(0, 5);
+    this[SET_CURRENCY]([...this.currency, ...this[GET_CURRENCY]]);
   },
 };
 </script>
