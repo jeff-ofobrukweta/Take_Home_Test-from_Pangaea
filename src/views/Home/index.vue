@@ -2,13 +2,13 @@
   <div>
     <HeaderNavbar />
     <div class="contain-product-360">
-    <div class="all-products-360 product-wrapper">
-      <div class="css-mafqmj">
-        <h1 class="chakra-heading css-6zdeqh">All Products</h1>
-        <p class="chakra-text css-12eueq9">A 360° look at Lumin</p>
+      <div class="all-products-360 product-wrapper">
+        <div class="css-mafqmj">
+          <h1 class="chakra-heading css-6zdeqh">All Products</h1>
+          <p class="chakra-text css-12eueq9">A 360° look at Lumin</p>
+        </div>
+        <div class="chakra-select__wrapper css-42b2qy"></div>
       </div>
-      <div class="chakra-select__wrapper css-42b2qy"></div>
-    </div>
     </div>
     <div class="home-component">
       <Sidebar />
@@ -30,7 +30,9 @@
           <h2 class="chakra-text css-1mujpit">{{ item.title }}</h2>
           <div class="css-1o2ui0u">
             <p class="chakra-text css-1v9wznn">From:</p>
-            <p class="chakra-text css-mgwhu5">{{GET_CURRENT_CURRENCY}}&nbsp;{{ item.price }}</p>
+            <p class="chakra-text css-mgwhu5">
+              {{ GET_CURRENT_CURRENCY }}&nbsp;{{ item.price }}
+            </p>
           </div>
           <div class="button-custom">
             <ButtonComponent
@@ -48,31 +50,23 @@
         </ProductCard>
       </div>
       <!-- this part is the aolloIsLoading  -->
-       <div v-if="!GET_LOADING" class="product-wrapper wrapper-p-main">
-         <ProductCard
-          v-for="(item, index) in [1,2,3,4,5,6,7]"
+      <div v-if="GET_LOADING" class="product-wrapper wrapper-p-main">
+        <ProductCard
+          v-for="(item, index) in [1, 2, 3, 4, 5, 6, 7]"
           :key="index"
-          customClass="custom-class-card-loader-holder custom-class-card-holder">
-          <div class="loader-image">
-            image here
-          </div>
-          <h2 class="chakra-text css-1mujpit"></h2>
-          <div class="css-1o2ui0u">
-            price here
-          </div>
-          <div class="button-custom">
-            buton here
-          </div>
-          </ProductCard>
-       </div>
+          customClass="custom-class-card-loader-holder custom-class-card-holder"
+        >
+          <div class="loader-image"></div>
+          <div class="loader-image-bottom"></div>
+        </ProductCard>
+      </div>
 
-
-       <!-- this section is for empty product in rhe all product scenerio -->
-       <div v-if="!GET_PRODUCT.length" class="product-wrapper wrapper-p-main">
-         <div class="empty-product-show-all">
-           There are no product to showcase currently...
-         </div>
-       </div>
+      <!-- this section is for empty product in rhe all product scenerio -->
+      <div v-if="!GET_PRODUCT.length" class="product-wrapper wrapper-p-main">
+        <div class="empty-product-show-all">
+          There are no product to showcase currently...
+        </div>
+      </div>
 
       <!-- this part is the netweork  error for bad network -->
       <div v-if="GET_RESPONSE_ERROR" class="loading-card-holder red-anger">
@@ -101,7 +95,7 @@ import {
   ADD_TO_CART,
   SET_CURRENT_CURRENCY,
   GET_CURRENT_CURRENCY,
-  GET_LOADING
+  GET_LOADING,
 } from "./vuex-module/index.types";
 
 import { GET_RESPONSE_ERROR } from "../../store/index.types";
@@ -113,14 +107,13 @@ import {
 export default {
   name: "HomePageComponent",
   data() {
-    return {
-    };
+    return {};
   },
   components: {
     ButtonComponent,
     ProductCard,
     Sidebar,
-    HeaderNavbar
+    HeaderNavbar,
   },
   computed: {
     ...mapGetters([
@@ -130,7 +123,7 @@ export default {
       GET_MODAL_STATE,
       GET_CART,
       GET_CURRENT_CURRENCY,
-      GET_LOADING
+      GET_LOADING,
     ]),
   },
   methods: {

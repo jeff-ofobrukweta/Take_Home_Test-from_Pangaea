@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <button
-      title="CLICK TO CHANGE CURRENCY"
+      title="CLICK TO TOOGLE CURRENCY"
       @click="currencyOpen = !currencyOpen"
       :class="`dropbtn ${customClass}`"
     >
@@ -54,7 +54,7 @@ import {
   SET_CURRENT_CURRENCY,
   GET_CURRENCY,
   GET_PRODUCTS_ACTIONS,
-  SET_CURRENCY,
+  SET_CURRENCY
 } from "../../views/Home/vuex-module/index.types";
 
 export default {
@@ -98,8 +98,7 @@ export default {
         });
         this.currency = apf.splice(0, 5);
       }
-    },
-    showCurrencyList() {},
+    }
   },
   mounted() {
     this.currency = this[GET_CURRENCY].splice(0, 5);

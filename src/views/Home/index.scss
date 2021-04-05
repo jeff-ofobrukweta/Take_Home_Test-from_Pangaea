@@ -79,6 +79,7 @@
   }
 }
 
+
 .css-1mujpit {
   font-family: "FF Bau Regular", sans-serif;
   font-weight: 400;
@@ -137,22 +138,18 @@
   }
 }
 
+// loader mixins here
+
+
 .loader-image{
-  box-shadow: none;
-  background-clip: padding-box;
-  cursor: default;
-  color: transparent;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  @include loader-image-mixin;
   height: 180px;
-  border-radius: 5px;
-  -webkit-animation: animation-loader 0.6s linear 0s infinite alternate none running;
-  animation: animation-loader 0.6s linear 0s infinite alternate none running;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.loader-image-bottom{
+  @include loader-image-mixin;
+  height: 100px;
   width: 100%;
 }
 @keyframes animation-loader  {

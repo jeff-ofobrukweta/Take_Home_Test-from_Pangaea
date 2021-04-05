@@ -21,3 +21,22 @@ $desktop-lg: "screen and (min-width: 1800px)";
     @content;
   }
 }
+
+
+// the loader theme
+@mixin loader-image-mixin {
+  box-shadow: none;
+  background-clip: padding-box;
+  cursor: default;
+  color: transparent;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 5px;
+  -webkit-animation: animation-loader 0.6s linear 0s infinite alternate none running;
+  animation: animation-loader 0.6s linear 0s infinite alternate none running;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
