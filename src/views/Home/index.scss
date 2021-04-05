@@ -63,7 +63,16 @@
 }
 
 .button-custom{
-  width: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  
+  @include tablet{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
   .btn-background{
     background-color: $penguin-green-color;
     color:$penguin-white-color;
